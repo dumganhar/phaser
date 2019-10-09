@@ -280,6 +280,30 @@ var File = new Class({
             }
             else
             {
+                if (window.yyrt && this.type === 'image' || this.type === 'normalMap') {
+                    var image = new Image();
+                    var self = this;
+                    image.onload = function() {
+                        self.data = image;
+                        var fakeXHR = {
+                            status: 200,
+                            readyState: 4
+                        };
+
+                        var fakeEvent = {
+                            target: fakeXHR
+                        };
+
+                        self.onLoad(fakeXHR, fakeEvent);
+                    };
+                    image.onerror = function() {
+                        self.onError();
+                    };
+                    image.src = this.src;
+
+                    return;
+                }
+
                 //  The creation of this XHRLoader starts the load process going.
                 //  It will automatically call the following, based on the load outcome:
                 //  

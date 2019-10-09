@@ -97,6 +97,17 @@ var ImageFile = new Class({
     {
         this.state = CONST.FILE_PROCESSING;
 
+        if (window.yyrt) {
+            if (this.data) {
+                this.onProcessComplete();
+            }
+            else {
+                this.onProcessError();
+            }
+
+            return;
+        }
+
         this.data = new Image();
 
         this.data.crossOrigin = this.crossOrigin;

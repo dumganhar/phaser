@@ -263,6 +263,11 @@ var HTML5AudioSound = new Class({
         {
             this.startTime = 0;
 
+            if(window.yyrt)
+            {
+                this.audio._isPaused = true;    
+            }
+
             if (this.audio.paused)
             {
                 this.playCatchPromise();

@@ -93,7 +93,15 @@ var HTML5AudioSoundManager = new Class({
          */
         this.onBlurPausedSounds = [];
 
-        this.locked = 'ontouchstart' in window;
+        //this.locked = 'ontouchstart' in window;
+        if(window.yyrt)
+        {
+            this.locked = false;
+        }
+        else 
+        {
+            this.locked = 'ontouchstart' in window;
+        }
 
         /**
          * A queue of all actions performed on sound objects while audio was locked.

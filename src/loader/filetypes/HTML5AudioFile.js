@@ -58,7 +58,15 @@ var HTML5AudioFile = new Class({
         File.call(this, loader, fileConfig);
 
         //  New properties specific to this class
-        this.locked = 'ontouchstart' in window;
+        //this.locked = 'ontouchstart' in window;
+        if(window.yyrt)
+        {
+            this.locked = false;
+        }
+        else {
+            this.locked = 'ontouchstart' in window;
+        }
+
         this.loaded = false;
         this.filesLoaded = 0;
         this.filesTotal = 0;
